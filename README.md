@@ -1,37 +1,33 @@
 # 📒 Digit Khata
 
-A simple and efficient **Digital Ledger (Khata) Management System** to track transactions, manage balances, and keep records organized in one place.
-
----
-
-## ✨ Overview
-
-**Digit Khata** helps users maintain a digital record of credits and debits, replacing traditional handwritten khata books with a fast, secure, and easy-to-use system.
-
-Whether you're managing personal expenses or small business accounts, this project provides a clean and structured way to track financial activity.
+A simple and lightweight **Flask-based Digital Khata (Ledger) Management System** designed to help users track credits, debits, and balances efficiently using a clean web interface.
 
 ---
 
 ## 🚀 Features
 
-- ➕ Add customer or account records  
-- 💰 Track credit and debit transactions  
-- 📊 View current balance instantly  
-- 🧾 Maintain full transaction history  
-- 🔍 Easy search and navigation  
-- 📱 Simple and user-friendly interface  
-- ⚡ Fast and lightweight performance  
+- 👤 Add and manage customers/ledgers  
+- 💰 Record credit and debit transactions  
+- 📊 Automatic balance calculation  
+- 🧾 View full transaction history  
+- 🔍 Search records easily  
+- ✏️ Edit and delete entries  
+- 🌐 Simple web-based UI (HTML + CSS + Flask templates)  
+
+---
+
+## 🧠 Project Idea
+
+Digit Khata replaces traditional handwritten ledger books with a digital system. It is useful for small shopkeepers and individuals who want to track credit-based transactions in an organized and accessible way.
 
 ---
 
 ## 🛠️ Tech Stack
 
-> *(Update this section based on your project)*
-
-- Frontend: HTML / CSS / JavaScript (or React if used)
-- Backend: Node.js / Express (if applicable)
-- Database: MongoDB / MySQL / LocalStorage
-- Other Tools: Git, GitHub
+- **Backend:** Flask (Python)  
+- **Frontend:** HTML, CSS (Jinja2 Templates)  
+- **Database:** SQLite (or any DB used in your project)  
+- **Other:** Python, Flask-WTF (if used), SQLAlchemy (if used)  
 
 ---
 
