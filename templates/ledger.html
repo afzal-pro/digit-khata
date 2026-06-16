@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ customer.name }} Ka Khata</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .balance-box { padding: 15px; border-radius: 6px; margin: 20px 0; font-size: 18px; font-weight: bold; }
+        .red-box { background-color: #fdecea; color: #e74c3c; border: 1px solid #f5c6cb; }
+        .green-box { background-color: #eafaf1; color: #2ecc71; border: 1px solid #c3e6cb; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>📊 {{ customer.name }} Ka Khata</h2>
+        <p>📱 Phone: {{ customer.phone }}</p>
+        <a href="/" class="btn btn-delete">🔙 Dashboard</a>
+        <br><br>
+
+        {% if net_balance >= 0 %}
+            <div class="balance-box red-box">💵 Is Customer Se Lena Hai: Rs. {{ net_balance }}</div>
+        {% else %}
+            <div class="balance-box green-box">💰 Is Customer Ka Advance Hai: Rs. {{ net_balance | abs }}</div>
+        {% endif %}
+
+        <hr>
+
+        <!-- New Transaction Form -->
+        <h3>➕ Nayi Entry Karein</h3>
+        <form action="/ledger/{{ customer.id }}" method="POST" style="display: flex; gap: 10px; align-items: center; background: #f8f9fa; padding: 15px; border-radius: 6px;">
+            <input type="number" name="amount" placeholder="Amount (Rupay)" required style="padding: 8px; width: 150px;">
+            <input type="text" name="description" placeholder="Tafseel (Maloomat)" style="padding: 8px; flex-grow: 1;">
+            
+            <select name="type" required style="padding: 8px;">
+                <option value="Diya">➕ Maine Diya (Udhaar)</option>
+                <option value="Liya">➖ Maine Liya (Payment)</option>
+            </select>
+            
+            <button type="submit" class="btn btn-green">➕ Add Entry</button>
+        </form>
+
+        <br>
+        <h3>📋 Purana Record (History)</h3>
+        <table>
+            <tr>
+                <th>Date in Time</th>
+                <th>Tafseel</th>
+                <th>Maine Diya (➕)</th>
+                <th>Maine Liya (➖)</th>
+            </tr>
+            {% for tx in customer.transactions | reverse %}
+            <tr>
+                <td>{{ tx.date.strftime('%d-%b-%Y %I:%M %p') }}</td>
+                <td>{{ tx.description }}</td>
+                <td>
+                    {% if tx.type == 'Diya' %}
+                        <span style="color: #e74c3c; font-weight: bold;">Rs. {{ tx.amount }}</span>
+                    {% else %} - {% endif %}
+                </td>
+                <td>
+                    {% if tx.type == 'Liya' %}
+                        <span style="color: #2ecc71; font-weight: bold;">Rs. {{ tx.amount }}</span>
+                    {% else %} - {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

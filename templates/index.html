@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Easy Khata Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>📒 Mera Easy Khata</h2>
+        <a href="/add" class="btn btn-green" style="float: right;">+ Naya Customer</a>
+        <br><br>
+        
+        <form method="POST" style="margin: 20px 0; display: flex; gap: 10px; max-width: 500px;">
+            <input type="text" name="search" value="{{ search_query }}" placeholder="🔍 Naam ya mobile number search karein..." 
+                   style="padding: 10px; flex-grow: 1; border: 1px solid #ccc; border-radius: 4px; font-size: 15px;">
+            
+            <button type="submit" class="btn btn-green" style="background-color: #3498db; padding: 10px 20px;">Search</button>
+            
+            {% if search_query %}
+                <a href="/" class="btn btn-delete" style="padding: 10px 15px; display: flex; align-items: center; text-decoration: none;">❌ Clear</a>
+            {% endif %}
+        </form>
+
+        <table>
+            <tr>
+                <th>Naam</th>
+                <th>Phone Number</th>
+                <th>Actions</th>
+            </tr>
+            {% for customer in customers %}
+            <tr>
+                <td><strong>{{ customer.name }}</strong></td>
+                <td>{{ customer.phone }}</td>
+                <td>
+                    <a href="/ledger/{{ customer.id }}" class="btn btn-green">Khata Dekhein</a>
+                    <a href="/delete/{{ customer.id }}" class="btn btn-delete" onclick="return confirm('Kya aap delete karna chahte hain?')">Delete</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3" style="text-align: center; color: #7f8c8d;">Koi customer nahi mila!</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
