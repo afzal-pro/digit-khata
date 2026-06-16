@@ -32,3 +32,4 @@ Digit Khata replaces traditional handwritten ledger books with a digital system.
 ---
 
 ## 📂 Project Structure
+App.py
